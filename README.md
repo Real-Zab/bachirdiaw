@@ -16,8 +16,8 @@ Site statique : français à la racine, anglais dans `/en/`. Aucun outil de buil
 
 | Fichier | Où il apparaît |
 |---|---|
-| `hero.jpg` | Portrait de l'accueil (format 4:5) |
-| `og.jpg` | Image de partage WhatsApp, Facebook, Google (1200 x 630) |
+| `hero.jpg` | Portrait de l'accueil (déjà en place) |
+| `og.jpg` | Image de partage WhatsApp, Facebook, Google (déjà en place) |
 | `karma-cover.jpg`, `karma-1.jpg` à `karma-4.jpg` | Fiche Karma (couverture + 4 photos) |
 | même schéma pour `derapages`, `infideles`, `salma`, `beaute-maudite`, `fassema` | Fiches des autres séries |
 | `inst-el-tac-tico.jpg`, `inst-baisse-loyer.jpg`, `inst-tier.jpg`, `inst-horizon-halal.jpg` | Page Institutionnel |
