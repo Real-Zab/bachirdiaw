@@ -85,7 +85,7 @@ p { margin: 0 0 1rem; }
 }
 
 /* ---------- Accueil : hero plein écran, photo agrandie et fondue dans le noir ---------- */
-.hero-stage { position: relative; display: flex; align-items: center; min-height: clamp(640px, 100svh, 920px); overflow: hidden; }
+.hero-stage { --h: clamp(640px, 100svh, 920px); position: relative; display: flex; align-items: center; min-height: clamp(640px, 100svh, 920px); overflow: hidden; }
 .hero-stage::before { content: ""; position: absolute; left: clamp(12px, 2.6vw, 32px); top: 34%; bottom: 0; width: 1px; z-index: 2; background: linear-gradient(180deg, transparent, rgba(196, 122, 61, 0.35), transparent); }
 .hero-photo { position: absolute; top: 0; bottom: 0; right: 0; aspect-ratio: 2400 / 1891; max-width: 100%; }
 .hero-photo .ph { position: absolute; inset: 0; border: 0; }
@@ -129,6 +129,12 @@ p { margin: 0 0 1rem; }
 }
 .explore svg { width: 18px; height: 18px; stroke: var(--sand); }
 .explore:hover { color: var(--gold); }
+
+/* Écran large (ultra-wide) : portraits plus espacés, « Explorer » posé sur la photo de gauche */
+@media (min-width: 1100px) and (min-aspect-ratio: 19/10) {
+  .hero-photo { aspect-ratio: 2800 / 1861; max-width: none; }
+  .explore { left: auto; right: calc(var(--h) * 1.1488); transform: translateX(50%); }
+}
 
 /* Petit écran : la photo démarre sous l'en-tête à deux lignes */
 @media (max-width: 680px) {
