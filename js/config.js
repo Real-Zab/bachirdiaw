@@ -5,13 +5,21 @@ window.SITE_CONFIG = {
   showreel: { provider: "youtube", id: "" },
 
   /* Numéro WhatsApp au format international, chiffres uniquement (ex. 221770000000) */
-  whatsapp: "",
+  whatsapp: "221776335959",
 
   /* Email de contact professionnel */
   email: "contact@bachirdiaw.com",
 
   /* Liens complets vers tes comptes (ex. https://www.instagram.com/ton_compte) */
-  social: { instagram: "", tiktok: "", facebook: "", youtube: "" },
+  social: {
+    instagram: "https://www.instagram.com/bachir__diaw",
+    tiktok: "https://www.tiktok.com/@bachir_diaw",
+    facebook: "https://www.facebook.com/share/1CZFTLsFWj/",
+    x: "https://x.com/BachirDiaw",
+    snapchat: "https://www.snapchat.com/add/el-bashir",
+    threads: "https://www.threads.com/@bachir__diaw",
+    youtube: "https://youtube.com/@chefdiaw2618"
+  },
 
   /* Chiffres d'audience affichés sur la page Collaborations. Une ligne sans valeur n'apparaît pas. */
   stats: [

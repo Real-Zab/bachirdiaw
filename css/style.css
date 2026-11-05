@@ -302,3 +302,34 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .brand, .foot-brand, main h1, main h2, .c-title, .stat-value { font-family: var(--font-serif); font-variation-settings: normal; font-weight: 600; letter-spacing: 0; }
 .brand span, .foot-brand span { color: var(--gold); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+
+/* ---------- Panneau Contact ---------- */
+.panel { position: fixed; inset: 0; z-index: 60; visibility: hidden; pointer-events: none; }
+.panel.is-open { visibility: visible; pointer-events: auto; }
+.panel-backdrop { position: absolute; inset: 0; background: rgba(5, 4, 3, 0.7); opacity: 0; transition: opacity 0.3s ease; }
+.panel.is-open .panel-backdrop { opacity: 1; }
+.panel-box {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(100%, 34rem);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+  padding: 5rem 1.5rem 3rem; overflow-y: auto;
+  background: var(--ink); border-left: 1px solid var(--line);
+  transform: translateX(100%); transition: transform 0.35s ease;
+}
+.panel.is-open .panel-box { transform: none; }
+.panel-close { position: absolute; top: 1.4rem; right: 1.4rem; width: 44px; height: 44px; display: grid; place-items: center; background: transparent; border: 1px solid var(--line); color: var(--cream); cursor: pointer; }
+.panel-close:hover { border-color: var(--gold); color: var(--gold); }
+.panel-close svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.panel-links { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; text-align: center; }
+.panel-links a { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.15; color: var(--cream); text-decoration: none; }
+.panel-links a:hover { color: var(--gold); }
+.panel-direct { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 0; }
+.panel-direct a { color: var(--sand); text-decoration: none; font-size: 1rem; }
+.panel-direct a:hover { color: var(--gold); }
+.panel-social { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.1rem 1.4rem; margin: 0; }
+.panel-social a { display: grid; place-items: center; width: 40px; height: 40px; color: var(--cream); }
+.panel-social a:hover { color: var(--gold); }
+.panel-social svg { width: 22px; height: 22px; fill: currentColor; }
+.panel-lock { overflow: hidden; }
+.prod-meta { color: var(--gold); font-size: 0.9rem; }
+@media (prefers-reduced-motion: reduce) { .panel-box, .panel-backdrop { transition: none; } }

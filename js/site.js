@@ -46,7 +46,7 @@
   }
 
   /* Réseaux sociaux */
-  var names = { instagram: "Instagram", tiktok: "TikTok", facebook: "Facebook", youtube: "YouTube" };
+  var names = { instagram: "Instagram", tiktok: "TikTok", facebook: "Facebook", x: "X", snapchat: "Snapchat", threads: "Threads", youtube: "YouTube" };
   var social = cfg.social || {};
   $$("[data-social]").forEach(function (box) {
     var count = 0;
@@ -144,4 +144,36 @@
 
   /* Année du pied de page */
   $$("[data-year]").forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
+})();
+
+/* Panneau Contact (menu latéral) */
+(function () {
+  var panel = document.getElementById("panel");
+  if (!panel) { return; }
+  var openers = Array.prototype.slice.call(document.querySelectorAll("[data-panel-open]"));
+  var closers = Array.prototype.slice.call(panel.querySelectorAll("[data-panel-close]"));
+  var last = null;
+  function setOpen(open) {
+    panel.classList.toggle("is-open", open);
+    panel.setAttribute("aria-hidden", open ? "false" : "true");
+    document.documentElement.classList.toggle("panel-lock", open);
+    openers.forEach(function (o) { o.setAttribute("aria-expanded", open ? "true" : "false"); });
+    if (open) {
+      last = document.activeElement;
+      var first = panel.querySelector(".panel-close");
+      if (first) { first.focus(); }
+    } else if (last && last.focus) {
+      last.focus();
+    }
+  }
+  openers.forEach(function (o) {
+    o.addEventListener("click", function (e) { e.preventDefault(); setOpen(true); });
+  });
+  closers.forEach(function (c) { c.addEventListener("click", function () { setOpen(false); }); });
+  panel.addEventListener("click", function (e) {
+    if (e.target.closest(".panel-links a")) { setOpen(false); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && panel.classList.contains("is-open")) { setOpen(false); }
+  });
 })();
