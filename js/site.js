@@ -209,7 +209,7 @@
       current = (n + slides.length) % slides.length;
       slides.forEach(function (s, i) { s.classList.toggle("is-on", i === current); });
       bars.forEach(function (b, i) { b.setAttribute("aria-current", i === current ? "true" : "false"); });
-      if (num) { num.textContent = ("0" + (current + 1)).slice(-2); }
+      show.setAttribute("data-cur", String(current));
     };
     var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
     var start = function () {
