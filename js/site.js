@@ -86,6 +86,8 @@
         grid.appendChild(cell);
       });
       stats.hidden = false;
+      var st = $("[data-stats-todo]", stats);
+      if (st) { st.hidden = true; }
     }
   }
 
@@ -176,4 +178,58 @@
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && panel.classList.contains("is-open")) { setOpen(false); }
   });
+
+  var cfg = window.SITE_CONFIG || {};
+  var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
+  var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
+
+  /* Kit média : le bouton apparaît quand cfg.mediaKit contient le chemin du PDF */
+  var kit = $("[data-media-kit]");
+  if (kit && cfg.mediaKit) {
+    kit.href = cfg.mediaKit;
+    kit.hidden = false;
+    var kt = $("[data-kit-todo]");
+    if (kt) { kt.hidden = true; }
+  }
+
+  /* Diaporama d'accueil */
+  var show = $("[data-slides]");
+  if (show) {
+    var slides = $$(".slide", show);
+    var bars = $$("[data-slide-to]", show);
+    var num = $("[data-slide-num]", show);
+    var tot = $(".hc-tot", show);
+    var opt = cfg.slideshow || {};
+    var interval = opt.interval || 8000;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var current = 0, timer = null, held = false;
+    show.style.setProperty("--fade", (opt.fade || 1400) + "ms");
+    if (tot) { tot.textContent = ("0" + slides.length).slice(-2); }
+    var go = function (n) {
+      current = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) { s.classList.toggle("is-on", i === current); });
+      bars.forEach(function (b, i) { b.setAttribute("aria-current", i === current ? "true" : "false"); });
+      if (num) { num.textContent = ("0" + (current + 1)).slice(-2); }
+    };
+    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+    var start = function () {
+      stop();
+      if (reduce || slides.length < 2) { return; }
+      timer = setInterval(function () { if (!held && !document.hidden) { go(current + 1); } }, interval);
+    };
+    bars.forEach(function (b) {
+      b.addEventListener("click", function () { go(parseInt(b.getAttribute("data-slide-to"), 10)); start(); });
+    });
+    if (opt.pauseOnTouch !== false) {
+      show.addEventListener("touchstart", function () { held = true; }, { passive: true });
+      show.addEventListener("touchend", function () { held = false; }, { passive: true });
+      show.addEventListener("touchcancel", function () { held = false; }, { passive: true });
+    }
+    if (opt.pauseOnHover) {
+      show.addEventListener("mouseenter", function () { held = true; });
+      show.addEventListener("mouseleave", function () { held = false; });
+    }
+    go(0);
+    start();
+  }
 })();

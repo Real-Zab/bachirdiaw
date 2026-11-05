@@ -136,23 +136,39 @@ p { margin: 0 0 1rem; }
   .hero-photo { top: 84px; }
 }
 
-/* Téléphone : photo en haut, texte dessous, Explorer en bas */
+/* Téléphone : photo pleine largeur, titre, texte défilant, boutons et Explorer superposés en bas de la photo */
 @media (max-width: 520px) {
-  .hero-stage { display: block; min-height: 0; }
+  .hero-stage { --ph: min(150vw, calc(100svh - 84px), 780px); display: block; min-height: 0; height: calc(84px + var(--ph)); }
   .hero-stage::before { display: none; }
-  .hero-photo { right: 0; left: 0; width: 100%; max-width: none; bottom: auto; height: 150vw; max-height: 780px; aspect-ratio: auto; }
+  .hero-photo { right: 0; left: 0; width: 100%; max-width: none; top: 84px; bottom: auto; height: var(--ph); aspect-ratio: auto; }
   .hero-photo .ph img { object-position: 50% 6%; }
   .hero-photo::after {
     background:
-      linear-gradient(0deg, var(--ink) 0%, rgba(5, 4, 3, 0.88) 22%, rgba(5, 4, 3, 0) 60%),
+      linear-gradient(0deg, var(--ink) 0%, rgba(5, 4, 3, 0.92) 30%, rgba(5, 4, 3, 0.55) 48%, rgba(5, 4, 3, 0) 70%),
       linear-gradient(180deg, var(--ink) 0%, rgba(5, 4, 3, 0) 10%);
   }
-  .hero-inner { max-width: none; padding: calc(84px + min(108vw, 560px)) max(20px, env(safe-area-inset-right, 0px)) 4.5rem max(20px, env(safe-area-inset-left, 0px)); }
-  .hero-bio { font-size: 1.1rem; }
+  .hero-inner { position: absolute; left: 0; right: 0; bottom: 0; width: auto; max-width: none; padding: 0 max(20px, env(safe-area-inset-right, 0px)) 4rem max(20px, env(safe-area-inset-left, 0px)); }
+  .hero-tag { margin: 0 0 0.45rem; font-size: 0.64rem; }
   .hero h1 { font-size: 12.5vw; }
-  .hero .btn { padding: 0.9rem 1.2rem; }
-  .explore { bottom: 1rem; }
+  .hero-bio { margin: 0.8rem 0 1rem; font-size: 1rem; line-height: 1.4; max-width: none; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
+  .bio-track { display: inline-flex; animation: bio-scroll 26s linear infinite; will-change: transform; }
+  .bio-track > span { display: block; padding-right: 3rem; }
+  .bio-track > span + span { display: block; }
+  .hero-bio:active .bio-track { animation-play-state: paused; }
+  .hero-rule { display: none; }
+  .hero .actions { flex-wrap: nowrap; gap: 0.6rem; }
+  .hero .btn { flex: 1 1 0; min-width: 0; padding: 0.8rem 0.5rem; font-size: 0.62rem; letter-spacing: 0.06em; text-align: center; }
+  .explore { bottom: 0.7rem; }
+  .hero-count { top: 0.9rem; bottom: auto; right: 16px; }
 }
+@keyframes bio-scroll { to { transform: translateX(-50%); } }
+@media (max-width: 520px) and (prefers-reduced-motion: reduce) {
+  .hero-bio { white-space: normal; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .bio-track { display: block; animation: none; }
+  .bio-track > span + span { display: none; }
+  .bio-track > span { padding-right: 0; }
+}
+
 
 .btn {
   display: inline-block;
@@ -333,3 +349,49 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .panel-lock { overflow: hidden; }
 .prod-meta { color: var(--gold); font-size: 0.9rem; }
 @media (prefers-reduced-motion: reduce) { .panel-box, .panel-backdrop { transition: none; } }
+
+
+/* ---------- Diaporama d'accueil ---------- */
+[hidden] { display: none !important; }
+.bio-track { display: inline; }
+.bio-track > span + span { display: none; }
+.hero-photo { --fade: 1400ms; }
+.hero-photo .slide { opacity: 0; transition: opacity var(--fade) ease; }
+.hero-photo .slide.is-on { opacity: 1; }
+.hero-count { position: absolute; right: clamp(16px, 2.6vw, 32px); bottom: 1.6rem; z-index: 3; display: flex; align-items: center; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--sand); font-variant-numeric: tabular-nums; }
+.hc-bars { display: inline-flex; margin-left: 0.8rem; }
+.hc-bars button { position: relative; width: 26px; height: 22px; padding: 0; border: 0; background: none; cursor: pointer; }
+.hc-bars button::after { content: ""; position: absolute; left: 2px; right: 2px; top: 10px; height: 2px; background: rgba(210, 188, 150, 0.35); transition: background 0.3s ease; }
+.hc-bars button[aria-current="true"]::after { background: var(--gold); }
+@media (prefers-reduced-motion: reduce) { .hero-photo .slide { transition: none; } }
+
+/* ---------- Pour les marques ---------- */
+.brand-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.2rem; margin: 2.5rem 0 2rem; }
+.brand-grid h3 { margin: 0 0 1rem; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--gold); }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips li { padding: 0.4rem 0.9rem; border: 1px solid var(--line); color: var(--cream); font-size: 0.9rem; }
+.brand-grid .sub { margin: 0 0 1rem; color: var(--sand); }
+.brand-grid .actions { margin: 0; align-items: center; }
+@media (max-width: 860px) { .brand-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Icônes sociales : une seule ligne, y compris sur téléphone ---------- */
+.panel-social { flex-wrap: nowrap; gap: clamp(0.1rem, 1.6vw, 1.2rem); }
+.panel-social a { width: clamp(34px, 10vw, 40px); height: clamp(34px, 10vw, 40px); }
+.panel-social svg { width: clamp(18px, 5.4vw, 22px); height: clamp(18px, 5.4vw, 22px); }
+.social-icons { display: flex; flex-wrap: nowrap; gap: clamp(0.15rem, 1.4vw, 0.8rem); margin: 0; }
+.social-icons a { display: grid; place-items: center; width: clamp(34px, 9.5vw, 42px); height: clamp(34px, 9.5vw, 42px); color: var(--gold); }
+.social-icons a:hover { color: var(--cream); }
+.social-icons svg { width: clamp(18px, 5vw, 22px); height: clamp(18px, 5vw, 22px); fill: currentColor; }
+
+/* Très petit écran : la saison passe sous le titre au lieu de déborder */
+@media (max-width: 380px) {
+  .credits a { flex-wrap: wrap; gap: 0.1rem 1rem; }
+  .c-lead { display: none; }
+  .c-seasons { flex-basis: 100%; text-align: left; }
+}
+
+/* Téléphone : les deux photos détourées sont agrandies vers le haut pour que le visage reste au-dessus du texte */
+@media (max-width: 520px) {
+  .hero-photo .slide:nth-of-type(3) img { transform: scale(1.18); transform-origin: 50% 100%; }
+}
+@media (max-width: 380px) { .page-title { font-size: clamp(1.8rem, 9.4vw, 2.6rem); overflow-wrap: anywhere; } }

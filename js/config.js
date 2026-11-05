@@ -4,6 +4,12 @@ window.SITE_CONFIG = {
   /* Showreel : provider = "youtube" ou "vimeo", id = identifiant de la vidéo (ex. pour youtube.com/watch?v=abc123, l'id est abc123) */
   showreel: { provider: "youtube", id: "" },
 
+  /* Diaporama de l'accueil : interval = durée d'une photo en millisecondes, fade = durée du fondu, pauseOnTouch = pause quand on appuie sur la photo, pauseOnHover = pause au survol (ordinateur) */
+  slideshow: { interval: 8000, fade: 1400, pauseOnTouch: true, pauseOnHover: false },
+
+  /* Kit média : chemin du PDF une fois déposé dans le dossier media (ex. "media/kit-media-bachir-diaw.pdf"). Vide = bouton masqué. */
+  mediaKit: "",
+
   /* Numéro WhatsApp au format international, chiffres uniquement (ex. 221770000000) */
   whatsapp: "221776335959",
 
