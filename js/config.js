@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   whatsapp: "",
 
   /* Email de contact professionnel */
-  email: "",
+  email: "contact@bachirdiaw.com",
 
   /* Liens complets vers tes comptes (ex. https://www.instagram.com/ton_compte) */
   social: { instagram: "", tiktok: "", facebook: "", youtube: "" },

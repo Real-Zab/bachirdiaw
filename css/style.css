@@ -69,7 +69,7 @@ p { margin: 0 0 1rem; }
 .nav-cta { padding: 0.55rem clamp(0.7rem, 1.6vw, 1.4rem); border: 1px solid var(--gold); background: rgba(220, 182, 92, 0.1); color: var(--gold); font-size: clamp(0.66rem, 0.8vw + 0.2rem, 0.8rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .nav-cta:hover, .nav-cta[aria-current="page"] { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 
-.lang { display: flex; flex-direction: column; gap: 0.1rem; margin-left: 0.7rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.25; }
+.lang { display: flex; flex-direction: column; gap: 0.1rem; margin-left: clamp(0.8rem, 2vw, 2rem); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.25; }
 .lang a { color: var(--sand); text-decoration: none; }
 .lang a:hover { color: var(--cream); }
 .lang span[aria-current] { color: var(--gold); }
@@ -78,7 +78,7 @@ p { margin: 0 0 1rem; }
 @media (max-width: 680px) {
   .site-header .wrap { flex-wrap: wrap; min-height: 0; padding-block: 14px 8px; row-gap: 6px; }
   .brand { order: 1; }
-  .lang { order: 2; margin-right: auto; }
+  .lang { order: 2; margin-left: auto; margin-right: 0.8rem; padding-right: 0.8rem; border-right: 1px solid var(--line); }
   .head-cta { order: 3; margin-left: 0; }
   .head-cta::before { display: none; }
   .nav { order: 4; flex: 0 0 100%; margin-left: 0; justify-content: space-between; gap: 0.4rem; }
@@ -106,7 +106,7 @@ p { margin: 0 0 1rem; }
 .hero h1 span { display: inline; }
 .hero h1 span + span { margin-left: 0.22em; }
 .hero h1 span + span { color: var(--gold); }
-.hero-bio { margin: 1.6rem 0 0; min-height: 3.2em; max-width: 31rem; font-size: clamp(0.95rem, 1.3vw + 0.35rem, 1.3rem); line-height: 1.6; color: var(--cream); }
+.hero-bio { margin: 1.6rem 0 0; max-width: 31rem; font-size: clamp(0.95rem, 1.3vw + 0.35rem, 1.3rem); line-height: 1.6; color: var(--cream); }
 .hero-rule { display: block; width: 125px; height: 1px; margin: 2rem 0; background: linear-gradient(90deg, var(--copper), transparent); }
 .hero .actions { margin: 0; gap: 0.75rem; }
 .hero .btn { padding: 0.9rem clamp(0.9rem, 2.2vw, 2rem); font-size: clamp(0.64rem, 0.8vw + 0.22rem, 0.82rem); }
