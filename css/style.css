@@ -69,10 +69,10 @@ p { margin: 0 0 1rem; }
 .nav-cta { padding: 0.55rem clamp(0.7rem, 1.6vw, 1.4rem); border: 1px solid var(--gold); background: rgba(220, 182, 92, 0.1); color: var(--gold); font-size: clamp(0.66rem, 0.8vw + 0.2rem, 0.8rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .nav-cta:hover, .nav-cta[aria-current="page"] { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 
-.lang { position: relative; display: flex; gap: 0.6rem; margin-left: clamp(0.6rem, 1.6vw, 1.4rem); padding-left: clamp(0.6rem, 1.6vw, 1.4rem); border-left: 1px solid var(--line); font-size: clamp(0.72rem, 1vw + 0.2rem, 0.85rem); font-weight: 600; }
-.lang a { color: var(--sand); text-decoration: none; padding-block: 0.4rem 0.55rem; }
+.lang { display: flex; flex-direction: column; gap: 0.1rem; margin-left: 0.7rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.25; }
+.lang a { color: var(--sand); text-decoration: none; }
 .lang a:hover { color: var(--cream); }
-.lang span[aria-current] { color: var(--gold); border-bottom: 2px solid var(--gold); padding-block: 0.4rem 0.55rem; }
+.lang span[aria-current] { color: var(--gold); }
 
 /* Petit écran : le nom et le bouton Contact en haut, tous les liens juste dessous */
 @media (max-width: 680px) {
@@ -87,25 +87,26 @@ p { margin: 0 0 1rem; }
 /* ---------- Accueil : hero plein écran, photo agrandie et fondue dans le noir ---------- */
 .hero-stage { --h: clamp(640px, 100svh, 920px); position: relative; display: flex; align-items: center; min-height: clamp(640px, 100svh, 920px); overflow: hidden; }
 .hero-stage::before { content: ""; position: absolute; left: clamp(12px, 2.6vw, 32px); top: 34%; bottom: 0; width: 1px; z-index: 2; background: linear-gradient(180deg, transparent, rgba(196, 122, 61, 0.35), transparent); }
-.hero-photo { position: absolute; top: 0; bottom: 0; right: 0; aspect-ratio: 2400 / 1891; max-width: 100%; }
+.hero-photo { position: absolute; top: 0; bottom: 0; right: 0; aspect-ratio: 2 / 3; max-width: 100%; }
 .hero-photo .ph { position: absolute; inset: 0; border: 0; }
-.hero-photo .ph img { object-position: 100% 0%; }
+.hero-photo .ph img { object-position: 50% 0%; }
 .hero-photo picture { display: contents; }
 .hero-photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--ink) 0%, rgba(5, 4, 3, 0.6) 14%, rgba(5, 4, 3, 0) 40%),
+    linear-gradient(90deg, var(--ink) 0%, rgba(5, 4, 3, 0.7) 18%, rgba(5, 4, 3, 0) 46%),
     linear-gradient(0deg, var(--ink) 0%, rgba(5, 4, 3, 0) 24%),
     linear-gradient(180deg, rgba(5, 4, 3, 0.6) 0%, rgba(5, 4, 3, 0) 16%);
 }
 .hero-inner { position: relative; z-index: 2; width: 100%; max-width: min(46rem, 52vw); padding: 6.5rem clamp(16px, 2.4vw, 24px) 6rem max(clamp(24px, 4vw, 48px), env(safe-area-inset-left, 0px)); }
 .hero-tag { margin: 0 0 1.4rem; font-size: clamp(0.68rem, 0.8vw + 0.25rem, 0.82rem); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
-.hero h1 { margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(3rem, 8vw, 6.6rem); line-height: 1.04; letter-spacing: -0.005em; }
-.hero h1 span { display: block; }
+.hero h1 { margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: 1.04; letter-spacing: -0.005em; white-space: nowrap; }
+.hero h1 span { display: inline; }
+.hero h1 span + span { margin-left: 0.22em; }
 .hero h1 span + span { color: var(--gold); }
-.hero-bio { margin: 1.6rem 0 0; max-width: 31rem; font-size: clamp(0.95rem, 1.3vw + 0.35rem, 1.3rem); line-height: 1.6; color: var(--cream); }
+.hero-bio { margin: 1.6rem 0 0; min-height: 3.2em; max-width: 31rem; font-size: clamp(0.95rem, 1.3vw + 0.35rem, 1.3rem); line-height: 1.6; color: var(--cream); }
 .hero-rule { display: block; width: 125px; height: 1px; margin: 2rem 0; background: linear-gradient(90deg, var(--copper), transparent); }
 .hero .actions { margin: 0; gap: 0.75rem; }
 .hero .btn { padding: 0.9rem clamp(0.9rem, 2.2vw, 2rem); font-size: clamp(0.64rem, 0.8vw + 0.22rem, 0.82rem); }
@@ -130,12 +131,6 @@ p { margin: 0 0 1rem; }
 .explore svg { width: 18px; height: 18px; stroke: var(--sand); }
 .explore:hover { color: var(--gold); }
 
-/* Écran large (ultra-wide) : portraits plus espacés, « Explorer » posé sur la photo de gauche */
-@media (min-width: 1100px) and (min-aspect-ratio: 19/10) {
-  .hero-photo { aspect-ratio: 2800 / 1861; max-width: none; }
-  .explore { left: auto; right: calc(var(--h) * 1.1488); transform: translateX(50%); }
-}
-
 /* Petit écran : la photo démarre sous l'en-tête à deux lignes */
 @media (max-width: 680px) {
   .hero-photo { top: 84px; }
@@ -154,6 +149,7 @@ p { margin: 0 0 1rem; }
   }
   .hero-inner { max-width: none; padding: calc(84px + min(108vw, 560px)) max(20px, env(safe-area-inset-right, 0px)) 4.5rem max(20px, env(safe-area-inset-left, 0px)); }
   .hero-bio { font-size: 1.1rem; }
+  .hero h1 { font-size: 12.5vw; }
   .hero .btn { padding: 0.9rem 1.2rem; }
   .explore { bottom: 1rem; }
 }
