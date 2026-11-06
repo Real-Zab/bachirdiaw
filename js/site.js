@@ -171,6 +171,11 @@
   openers.forEach(function (o) {
     o.addEventListener("click", function (e) { e.preventDefault(); setOpen(true); });
   });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-panel-open-sm]"), function (o) {
+    o.addEventListener("click", function (e) {
+      if (window.matchMedia && window.matchMedia("(max-width: 520px)").matches) { e.preventDefault(); setOpen(true); }
+    });
+  });
   closers.forEach(function (c) { c.addEventListener("click", function () { setOpen(false); }); });
   panel.addEventListener("click", function (e) {
     if (e.target.closest(".panel-links a")) { setOpen(false); }
@@ -215,7 +220,7 @@
     var start = function () {
       stop();
       if (reduce || slides.length < 2) { return; }
-      timer = setInterval(function () { if (!held && !document.hidden && !(window.matchMedia && window.matchMedia("(min-width: 1100px)").matches)) { go(current + 1); } }, interval);
+      timer = setInterval(function () { if (!held && !document.hidden && !(window.matchMedia && window.matchMedia("(min-width: 1280px)").matches)) { go(current + 1); } }, interval);
     };
     bars.forEach(function (b) {
       b.addEventListener("click", function () { go(parseInt(b.getAttribute("data-slide-to"), 10)); start(); });
