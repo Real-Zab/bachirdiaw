@@ -139,7 +139,7 @@ p { margin: 0 0 1rem; }
 
 /* Téléphone : photo pleine largeur, titre, texte défilant, boutons et Explorer superposés en bas de la photo */
 @media (max-width: 520px) {
-  .hero-stage { --head: 56px; --ph: clamp(150vw, calc(100svh - var(--head) - 110px), 780px); display: block; min-height: 560px; height: 100svh; }
+  .hero-stage { --head: 50px; --ph: clamp(150vw, calc(100svh - var(--head) - 110px), 780px); display: block; min-height: 560px; height: 100svh; }
   .hero-stage::before, .hero-photo::before { display: none; }
   .hero-photo { right: 0; left: 0; width: 100%; max-width: none; top: var(--head); bottom: auto; height: var(--ph); aspect-ratio: auto; }
   .hero-photo .ph img { object-position: 50% 6%; }
@@ -445,9 +445,35 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
   .hero-rule { margin-block: 1.4rem; }
 }
 
-/* ---------- Téléphone, accueil seulement : en-tête allégé (pas de nom ni de bouton Contact) ---------- */
+/* ---------- Téléphone, accueil seulement : en-tête allégé sur une seule ligne (liens plus petits, trait, EN / FR à droite) ---------- */
 @media (max-width: 520px) {
   .home .brand, .home .head-cta { display: none; }
-  .home .site-header .wrap { padding-block: 12px 2px; }
-  .home .lang { position: absolute; top: calc(100% + 8px); right: max(16px, env(safe-area-inset-right, 0px)); z-index: 5; margin: 0; padding: 0; border: 0; text-shadow: 0 0 8px rgba(5, 4, 3, 0.95); }
+  .home .site-header .wrap { flex-wrap: nowrap; align-items: center; padding-block: 12px 2px; row-gap: 0; }
+  .home .nav { order: 1; flex: 1 1 0; min-width: 0; justify-content: space-between; gap: 0.15rem; }
+  .home .nav a { font-size: clamp(0.56rem, 2.85vw, 0.72rem); }
+  .home .lang { order: 2; position: static; margin: 0 0 0 0.55rem; padding: 0 0 0 0.55rem; border: 0; border-left: 1px solid var(--line); text-shadow: none; }
+}
+
+/* ---------- Tablette en paysage et petits écrans d'ordinateur : les deux photos rétrécissent pour ne plus se toucher ---------- */
+@media (min-width: 1280px) and (max-height: 820px) {
+  .hero-photo, .hero-duo { top: auto; height: 80%; }
+}
+
+
+/* ---------- Ordinateur / tablette en paysage : les deux photos rétrécissent pour ne jamais se toucher ---------- */
+@media (min-width: 1280px) {
+  .hero-photo, .hero-duo { top: auto; bottom: 0; height: min(100%, 48vw); }
+  .hero-photo::after {
+    background:
+      linear-gradient(0deg, var(--ink) 0%, rgba(5, 4, 3, 0) 24%),
+      linear-gradient(180deg, var(--ink) 0%, rgba(5, 4, 3, 0.85) 8%, rgba(5, 4, 3, 0) 26%);
+  }
+}
+
+/* ---------- Téléphone, accueil : navigation, trait et EN / FR sur une seule ligne ---------- */
+@media (max-width: 520px) {
+  .home .site-header .wrap { flex-wrap: nowrap; align-items: center; padding-block: 12px 2px; }
+  .home .nav { order: 1; flex: 1 1 auto; min-width: 0; margin: 0; justify-content: space-between; gap: 0.25rem; }
+  .home .nav a { font-size: calc((100vw - 84px) / 29.5); }
+  .home .lang { position: static; order: 2; margin: 0 0 0 0.55rem; padding: 0 0 0 0.55rem; border: 0; border-left: 1px solid var(--line); text-shadow: none; font-size: 0.6rem; }
 }
