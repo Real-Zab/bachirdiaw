@@ -152,7 +152,7 @@ p { margin: 0 0 1rem; }
   .hero-tag { margin: 0 0 0.45rem; font-size: 0.64rem; }
   .hero h1 { font-size: 12.5vw; }
   .hero-bio { margin: 0.8rem 0 1rem; font-size: 1rem; line-height: 1.4; max-width: none; overflow: hidden; white-space: nowrap; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
-  .bio-track { display: inline-flex; animation: bio-scroll 26s linear infinite; will-change: transform; }
+  .bio-track { display: inline-flex; animation: bio-scroll 24s linear infinite; will-change: transform; }
   .bio-track > span { display: block; padding-right: 3rem; }
   .bio-track > span + span { display: block; }
   .hero-bio:active .bio-track { animation-play-state: paused; }
@@ -163,12 +163,7 @@ p { margin: 0 0 1rem; }
   .hero-count { top: 0.9rem; bottom: auto; right: 16px; }
 }
 @keyframes bio-scroll { to { transform: translateX(-50%); } }
-@media (max-width: 520px) and (prefers-reduced-motion: reduce) {
-  .hero-bio { white-space: normal; overflow: visible; -webkit-mask-image: none; mask-image: none; }
-  .bio-track { display: block; animation: none; }
-  .bio-track > span + span { display: none; }
-  .bio-track > span { padding-right: 0; }
-}
+
 
 
 .btn {
@@ -354,8 +349,10 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 
 /* ---------- Diaporama d'accueil ---------- */
 [hidden] { display: none !important; }
-.bio-track { display: inline; }
-.bio-track > span + span { display: none; }
+@media (min-width: 521px) {
+  .bio-track { display: inline; }
+  .bio-track > span + span { display: none; }
+}
 .hero-photo { --fade: 1400ms; }
 .hero-photo .slide { opacity: 0; transition: opacity var(--fade) ease; }
 .hero-photo .slide.is-on { opacity: 1; }
@@ -462,7 +459,7 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 
 /* ---------- Ordinateur / tablette en paysage : les deux photos rétrécissent pour ne jamais se toucher ---------- */
 @media (min-width: 1280px) {
-  .hero-photo, .hero-duo { top: auto; bottom: 0; height: min(100%, 48vw); }
+  .hero-photo, .hero-duo { top: auto; bottom: 0; height: min(100%, 40vw); }
   .hero-photo::after {
     background:
       linear-gradient(0deg, var(--ink) 0%, rgba(5, 4, 3, 0) 24%),

@@ -238,3 +238,30 @@
     start();
   }
 })();
+
+/* Défilement du texte d'accueil (téléphone) : lancé en JS pour rester actif
+   même si le téléphone coupe les animations CSS (économie d'énergie, "supprimer les animations"). */
+(function () {
+  var t = document.querySelector(".bio-track");
+  if (!t || !t.animate) return;
+  var mq = window.matchMedia("(max-width: 520px)");
+  var anim = null;
+  function sync() {
+    if (mq.matches) {
+      if (anim) return;
+      t.style.animation = "none";
+      anim = t.animate([{ transform: "translateX(0)" }, { transform: "translateX(-50%)" }],
+        { duration: 24000, iterations: Infinity, easing: "linear" });
+      var box = t.parentNode;
+      var pause = function () { if (anim) anim.pause(); };
+      var play = function () { if (anim) anim.play(); };
+      box.addEventListener("touchstart", pause, { passive: true });
+      box.addEventListener("touchend", play, { passive: true });
+      box.addEventListener("touchcancel", play, { passive: true });
+    } else if (anim) {
+      anim.cancel(); anim = null; t.style.animation = "";
+    }
+  }
+  sync();
+  if (mq.addEventListener) mq.addEventListener("change", sync);
+})();
