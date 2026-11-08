@@ -232,7 +232,6 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 
 /* ---------- Page Rôles ---------- */
 .cover-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 1.5rem; margin-top: 2.5rem; align-items: start; }
-@media (min-width: 1100px) { .cover-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 900px) { .cover-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .cover-grid { gap: 1.75rem 1rem; } }
 .cover { display: block; text-decoration: none; }
