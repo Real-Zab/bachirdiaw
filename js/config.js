@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
   mediaKit: "",
 
   /* Numéro WhatsApp au format international, chiffres uniquement (ex. 221770000000) */
-  whatsapp: "221776335959",
+  whatsapp: "",
 
   /* Email de contact professionnel */
   email: "contact@bachirdiaw.com",
