@@ -230,8 +230,10 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 @media (max-width: 800px) { .band-grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Page Rôles ---------- */
-.cover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 2.75rem 1.5rem; margin-top: 2.5rem; }
-.cover { display: block; text-decoration: none; }
+.cover-grid { column-count: 3; column-gap: 1.5rem; margin-top: 2.5rem; }
+@media (max-width: 900px) { .cover-grid { column-count: 2; } }
+@media (max-width: 560px) { .cover-grid { column-count: 1; } }
+.cover { display: block; text-decoration: none; break-inside: avoid; margin-bottom: 2.5rem; }
 .cover h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0.9rem 0 0.1rem; }
 .cover:hover h2 { color: var(--gold); }
 .cover p { color: var(--sand); font-style: italic; margin: 0; }
@@ -481,3 +483,11 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
   .home .nav a { font-size: calc((100vw - 84px) / 29.5); }
   .home .lang { position: static; order: 2; margin: 0 0 0 0.55rem; padding: 0 0 0 0.55rem; border: 0; border-left: 1px solid var(--line); text-shadow: none; font-size: 0.6rem; }
 }
+
+/* Fiche sans couverture : texte seul, pleine largeur */
+.fiche-solo { grid-template-columns: minmax(0, 1fr); }
+
+.refs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: 1.5rem; }
+.ref { border-top: 1px solid var(--line); padding-top: 1rem; }
+.ref h3 { margin: 0 0 0.7rem; font-family: "Playfair Display", serif; font-size: 1.25rem; font-weight: 500; }
+@media (max-width: 640px) { .refs { grid-template-columns: minmax(0, 1fr); } }
