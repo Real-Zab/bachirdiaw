@@ -29,9 +29,9 @@ window.SITE_CONFIG = {
 
   /* Chiffres d'audience affichés sur la page Collaborations. Une ligne sans valeur n'apparaît pas. */
   stats: [
-    { value: "59,6 K", label_fr: "Abonnés sur Instagram", label_en: "Instagram followers" },
-    { value: "208 K", label_fr: "Abonnés sur TikTok", label_en: "TikTok followers" },
-    { value: "9 742", label_fr: "Abonnés sur X", label_en: "X followers" }
+    { value: "59,6 K", net: "instagram", label_fr: "Abonnés sur Instagram", label_en: "Instagram followers" },
+    { value: "208 K", net: "tiktok", label_fr: "Abonnés sur TikTok", label_en: "TikTok followers" },
+    { value: "9 742", net: "x", label_fr: "Abonnés sur X", label_en: "X followers" }
   ],
 
   /* Institutionnel : lien à ouvrir pour chaque série (vidéo YouTube, page LinkedIn ou Facebook de la structure, etc.).
@@ -39,7 +39,8 @@ window.SITE_CONFIG = {
   instLinks: {
     "baisse-loyer": "https://youtube.com/playlist?list=PLuq-9139yokAhYjGtOJb0dX-MKwg8TbER&si=-ue9RF8Ce57-sB7B",
     "tier": "https://youtube.com/playlist?list=PLuq-9139yokD9AxBGAr64BReSN9owr1cu&si=lOt8uYHCXzcL1UoQ",
-    "horizon-halal": "https://lnkd.in/p/dptSvT2Y"
+    "horizon-halal": "https://lnkd.in/p/dptSvT2Y",
+    "ter-de-vies": "https://youtube.com/playlist?list=PLzztjZU0ruEDWLqugZaElfjJgqgldpBIs&si=wENXdlJFN3DhoEiE"
   },
 
   /* Témoignages publiés sur la page Témoignages. Ajoute une ligne par témoignage reçu avec l'accord de la personne :

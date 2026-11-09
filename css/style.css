@@ -534,3 +534,27 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 
 .testi-form-h { margin: 3.5rem 0 0.6rem; }
 .testi-form { margin-top: 1.5rem; }
+
+/* v34 : pied de page centré, audience sur une ligne, boutons sur une ligne, captures de témoignages */
+.foot-bottom { justify-content: center; text-align: center; }
+.stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.6rem, 2.5vw, 1.5rem); }
+.stat-value { font-size: clamp(1.55rem, 6.6vw, 3.6rem); white-space: nowrap; }
+.stat-label { font-size: clamp(0.72rem, 2.6vw, 1rem); line-height: 1.3; }
+.stat-net-row { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-top: 0.4rem; color: var(--gold); }
+.stat-net-row:hover { color: var(--cream); }
+.stat-net-row svg { width: 22px; height: 22px; fill: currentColor; }
+@media (min-width: 861px) {
+  .brand-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); }
+  .brand-grid .kit-block { grid-column: 1 / -1; }
+}
+.actions.one-line { flex-wrap: nowrap; gap: 0.6rem; }
+@media (max-width: 1279px) {
+  .actions.one-line .btn { flex: 1 1 0; min-width: 0; padding: 0.85rem 0.5rem; font-size: clamp(0.6rem, 2.4vw, 0.8rem); letter-spacing: 0.05em; text-align: center; }
+}
+.prod-act:empty { display: none; }
+.prod-act .inst-link { margin-top: 1rem; display: inline-block; }
+.shots { display: grid; gap: 1.5rem; margin: 2rem 0 3rem; max-width: 760px; }
+.shot { margin: 0; }
+.shot img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.shot figcaption { margin-top: 0.6rem; color: var(--sand); }
+.shot figcaption strong { color: var(--gold); font-weight: 600; }
