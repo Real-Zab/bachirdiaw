@@ -37,9 +37,13 @@ window.SITE_CONFIG = {
   /* Institutionnel : lien à ouvrir pour chaque série (vidéo YouTube, page LinkedIn ou Facebook de la structure, etc.).
      Colle l'adresse complète entre les guillemets. Vide = aucun bouton. */
   instLinks: {
-    "baisse-loyer": "",
-    "tier": "",
-    "horizon-halal": ""
-  }
+    "baisse-loyer": "https://youtube.com/playlist?list=PLuq-9139yokAhYjGtOJb0dX-MKwg8TbER&si=-ue9RF8Ce57-sB7B",
+    "tier": "https://youtube.com/playlist?list=PLuq-9139yokD9AxBGAr64BReSN9owr1cu&si=lOt8uYHCXzcL1UoQ",
+    "horizon-halal": "https://lnkd.in/p/dptSvT2Y"
+  },
+
+  /* Témoignages publiés sur la page Témoignages. Ajoute une ligne par témoignage reçu avec l'accord de la personne :
+     { quote_fr: "…", quote_en: "…", name: "Prénom Nom", role: "Fonction, projet" }. Liste vide = rien d'affiché. */
+  testimonials: []
 
 };

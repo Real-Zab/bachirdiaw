@@ -513,3 +513,13 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .inst-link { margin-top: 1.25rem; }
 .offers .ext { margin-left: 0.5rem; white-space: nowrap; }
 #references { scroll-margin-top: 6rem; }
+
+.testi-form { max-width: 720px; margin-top: 2.5rem; }
+.testi-form .check { display: flex; gap: 0.7rem; align-items: flex-start; margin: 1rem 0 1.5rem; color: var(--sand); line-height: 1.5; }
+.testi-form .check input { margin-top: 0.3rem; accent-color: var(--gold); flex: none; }
+.testi-list { display: grid; gap: 1.5rem; margin-top: 2.5rem; max-width: 720px; }
+.testi-list figure { margin: 0; padding-left: 1.25rem; border-left: 2px solid var(--gold); }
+.testi-list blockquote { margin: 0 0 0.6rem; font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.5; }
+.testi-list figcaption { color: var(--sand); font-size: 0.95rem; }
+
+.page-title.title-long { font-size: clamp(1.8rem, 7.2vw, 4.2rem); overflow-wrap: anywhere; }

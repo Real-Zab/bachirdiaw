@@ -173,6 +173,43 @@
     });
   }
 
+
+  /* Témoignages : liste publiée + formulaire d'envoi */
+  var tl = $("#testi-list");
+  if (tl) {
+    var tItems = (cfg.testimonials || []).filter(function (t) { return t && (t["quote_" + lang] || t.quote_fr); });
+    tItems.forEach(function (t) {
+      var fig = document.createElement("figure");
+      var q = document.createElement("blockquote");
+      var cap = document.createElement("figcaption");
+      q.textContent = t["quote_" + lang] || t.quote_fr;
+      cap.textContent = [t.name, t.role].filter(Boolean).join(" – ");
+      fig.appendChild(q); fig.appendChild(cap); tl.appendChild(fig);
+    });
+    if (tItems.length) { tl.hidden = false; }
+  }
+  var tf = $("#testi-form");
+  if (tf) {
+    var TL = {
+      fr: { subject: "Témoignage", name: "Nom", role: "Fonction", project: "Projet", ok: "Publication autorisée : oui", missing: "Aperçu : les coordonnées de contact seront ajoutées avant la mise en ligne." },
+      en: { subject: "Testimonial", name: "Name", role: "Role", project: "Project", ok: "Publication allowed: yes", missing: "Preview: contact details will be added before launch." }
+    }[lang];
+    var tNote = $("#testi-note");
+    tf.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!tf.reportValidity()) { return; }
+      var nm = $("#t-name").value.trim();
+      var text = TL.name + " : " + nm + "\n" + TL.role + " : " + $("#t-role").value.trim() + "\n" + TL.project + " : " + $("#t-project").value.trim() + "\n" + TL.ok + "\n\n" + $("#t-msg").value.trim();
+      var twa = String(cfg.whatsapp || "").replace(/\D/g, "");
+      var tmail = String(cfg.email || "").trim();
+      if (tmail) {
+        window.location.href = "mailto:" + tmail + "?subject=" + encodeURIComponent(TL.subject + " - " + nm) + "&body=" + encodeURIComponent(text);
+      } else if (twa) {
+        window.open("https://wa.me/" + twa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      } else { tNote.textContent = TL.missing; tNote.hidden = false; }
+    });
+  }
+
   /* Année du pied de page */
   $$("[data-year]").forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
 })();
