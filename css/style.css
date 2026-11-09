@@ -523,3 +523,14 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .testi-list figcaption { color: var(--sand); font-size: 0.95rem; }
 
 .page-title.title-long { font-size: clamp(1.8rem, 7.2vw, 4.2rem); overflow-wrap: anywhere; }
+
+/* Pieds de page : réseaux centrés sur téléphone et tablette */
+@media (max-width: 1279px) {
+  .foot-grid > div:last-child { text-align: center; }
+  .foot-grid .social-icons { justify-content: center; }
+}
+.synopsis + .synopsis { margin-top: 1.6rem; }
+.synopsis .bio-sub { margin: 0 0 0.5rem; color: var(--sand); font-size: 0.98rem; }
+
+.testi-form-h { margin: 3.5rem 0 0.6rem; }
+.testi-form { margin-top: 1.5rem; }

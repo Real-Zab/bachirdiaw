@@ -68,6 +68,36 @@
   });
 
 
+
+  /* Actualisation (F5) : toujours en haut de la page, sans ancre dans l'adresse */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || null;
+    var isReload = nav ? nav.type === "reload" : (performance.navigation && performance.navigation.type === 1);
+    if (!isReload) { return; }
+    if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+    if (location.hash) { history.replaceState(null, "", location.pathname + location.search); }
+    var top = function () { window.scrollTo(0, 0); };
+    top();
+    window.addEventListener("load", function () { top(); setTimeout(top, 60); setTimeout(top, 300); });
+    window.addEventListener("pageshow", top);
+  })();
+
+  /* Liens d'ancre internes (ex. « Explorer ») : défilement sans laisser l'ancre dans l'adresse */
+  $$('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    if (!id) { return; }
+    a.addEventListener("click", function (event) {
+      var target = document.getElementById(id);
+      if (!target) { return; }
+      event.preventDefault();
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      if (!target.hasAttribute("tabindex")) { target.setAttribute("tabindex", "-1"); }
+      try { target.focus({ preventScroll: true }); } catch (e) { /* ignore */ }
+      history.replaceState(null, "", location.pathname + location.search);
+    });
+  });
+
   /* Institutionnel : lien optionnel par série (défini dans config.js) */
   $$("[data-inst]").forEach(function (li) {
     var url = String((cfg.instLinks || {})[li.getAttribute("data-inst")] || "").trim();
