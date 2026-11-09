@@ -494,7 +494,9 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 @media (max-width: 640px) { .refs { grid-template-columns: minmax(0, 1fr); } }
 
 .ph-empty::before { text-align: center; }
-.gal-row { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.gal-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.9rem; margin-top: 1.5rem; }
+.gal-row .gp-empty { display: flex; align-items: center; justify-content: center; text-align: center; border: 1px dashed var(--line); background: transparent; color: var(--muted, #b7a98a); font-size: 0.85rem; padding: 0.5rem; }
+@media (max-width: 1000px) { .gal-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .gal-row .gp { margin: 0; aspect-ratio: 1 / 1; border: 1px solid var(--line); background: var(--ink); overflow: hidden; }
 .gal-row .gp img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 @media (max-width: 700px) { .gal-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
