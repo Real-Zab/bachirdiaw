@@ -583,3 +583,11 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
   .prod-row .prod-act { grid-column: 1; }
   .collab-cta { justify-content: center; }
 }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.amb-logo { display: flex; align-items: center; }
+.amb-logo img { height: 130px; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.brand-grid .amb-h { margin-top: 2rem; }
+.brand-logos { list-style: none; margin: 0.9rem 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.2rem; }
+.brand-logos img { height: 96px; width: auto; display: block; }
+@media (max-width: 860px) { .brand-logos { justify-content: flex-start; } .amb-logo img { height: 110px; } }
