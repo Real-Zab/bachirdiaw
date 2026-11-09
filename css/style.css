@@ -558,3 +558,12 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .shot img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
 .shot figcaption { margin-top: 0.6rem; color: var(--sand); }
 .shot figcaption strong { color: var(--gold); font-weight: 600; }
+
+.shots { grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); max-width: none; align-items: start; }
+.testi-more { display: flex; align-items: center; gap: 1rem; margin: 0 0 3rem; justify-content: center; }
+.testi-more[hidden] { display: none; }
+#testi-count { color: var(--sand); font-size: 0.9rem; }
+.inst-media { display: flex; flex-direction: column; align-items: stretch; }
+.inst-act { text-align: center; }
+.inst-act:empty { display: none; }
+.inst-act .inst-link { margin-top: 1rem; display: inline-block; }

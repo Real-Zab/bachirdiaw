@@ -43,8 +43,12 @@ window.SITE_CONFIG = {
     "ter-de-vies": "https://youtube.com/playlist?list=PLzztjZU0ruEDWLqugZaElfjJgqgldpBIs&si=wENXdlJFN3DhoEiE"
   },
 
-  /* Témoignages publiés sur la page Témoignages. Ajoute une ligne par témoignage reçu avec l'accord de la personne :
-     { quote_fr: "…", quote_en: "…", name: "Prénom Nom", role: "Fonction, projet" }. Liste vide = rien d'affiché. */
-  testimonials: []
-
+  /* Témoignages affichés sur la page Témoignages (6 à la fois, bouton « Voir plus » pour le reste).
+     Une ligne par témoignage : une capture d'écran (img) avec la fonction seulement, ou un texte (quote_fr / quote_en + name).
+     Liste vide = rien d'affiché. */
+  testimonials: [
+    { img: "img/testimonial-1.jpg", role_fr: "Directrice de production", role_en: "Production manager" },
+    { img: "img/testimonial-2.jpg", role_fr: "Producteur et réalisateur", role_en: "Producer and director" },
+    { img: "img/testimonial-3.jpg", role_fr: "Directeur de production", role_en: "Production manager" }
+  ]
 };

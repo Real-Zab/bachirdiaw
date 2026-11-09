@@ -102,7 +102,7 @@
   $$("[data-inst]").forEach(function (li) {
     var url = String((cfg.instLinks || {})[li.getAttribute("data-inst")] || "").trim();
     if (!/^https?:\/\//i.test(url)) { return; }
-    var holder = li.lastElementChild;
+    var holder = $(".inst-act", li) || li.lastElementChild;
     var a = document.createElement("a");
     a.className = "btn inst-link";
     a.href = url;
@@ -252,16 +252,38 @@
   /* Témoignages : liste publiée + formulaire d'envoi */
   var tl = $("#testi-list");
   if (tl) {
-    var tItems = (cfg.testimonials || []).filter(function (t) { return t && (t["quote_" + lang] || t.quote_fr); });
-    tItems.forEach(function (t) {
-      var fig = document.createElement("figure");
-      var q = document.createElement("blockquote");
-      var cap = document.createElement("figcaption");
-      q.textContent = t["quote_" + lang] || t.quote_fr;
-      cap.textContent = [t.name, t.role].filter(Boolean).join(" – ");
-      fig.appendChild(q); fig.appendChild(cap); tl.appendChild(fig);
-    });
-    if (tItems.length) { tl.hidden = false; }
+    var tItems = (cfg.testimonials || []).filter(function (t) { return t && (t.img || t["quote_" + lang] || t.quote_fr); });
+    var PAGE = 6, shown = 0;
+    var more = $("#testi-more"), moreBtn = $("#testi-more-btn"), count = $("#testi-count");
+    var fmtCount = function () { count.textContent = shown + " / " + tItems.length; };
+    var addMore = function () {
+      tItems.slice(shown, shown + PAGE).forEach(function (t) {
+        var fig = document.createElement("figure");
+        fig.className = "shot";
+        var role = t["role_" + lang] || t.role_fr || t.role || "";
+        if (t.img) {
+          var im = document.createElement("img");
+          im.src = (tl.getAttribute("data-base") || "") + t.img.replace(/^img\//, ""); im.alt = role; im.loading = "lazy";
+          fig.appendChild(im);
+        } else {
+          var q = document.createElement("blockquote");
+          q.textContent = t["quote_" + lang] || t.quote_fr;
+          fig.appendChild(q);
+        }
+        var cap = document.createElement("figcaption");
+        cap.textContent = t.img ? role : [t.name, role].filter(Boolean).join(" – ");
+        fig.appendChild(cap);
+        tl.appendChild(fig);
+      });
+      shown = Math.min(tItems.length, shown + PAGE);
+      fmtCount();
+      more.hidden = shown >= tItems.length;
+    };
+    if (tItems.length) {
+      tl.hidden = false;
+      addMore();
+      moreBtn.addEventListener("click", addMore);
+    }
   }
   var tf = $("#testi-form");
   if (tf) {
