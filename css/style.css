@@ -572,3 +572,14 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .prod-act { display: inline-block; vertical-align: middle; margin-left: 1rem; }
 .prod-act:empty { display: none; }
 .prod-act .inst-link { margin: 0; display: inline-block; padding: 0.55rem 1.2rem; }
+
+.prod-body { display: grid; gap: 0.4rem; }
+.prod-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
+.prod-row .prod-meta { margin: 0; grid-column: 1; }
+.prod-row .prod-act { grid-column: 2; margin: 0; justify-self: center; }
+@media (max-width: 860px) {
+  .prod-row { grid-template-columns: 1fr; justify-items: center; gap: 0.9rem; }
+  .prod-row .prod-meta { grid-column: 1; justify-self: start; }
+  .prod-row .prod-act { grid-column: 1; }
+  .collab-cta { justify-content: center; }
+}
