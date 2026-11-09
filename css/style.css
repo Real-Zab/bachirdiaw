@@ -540,12 +540,11 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.6rem, 2.5vw, 1.5rem); }
 .stat-value { font-size: clamp(1.55rem, 6.6vw, 3.6rem); white-space: nowrap; }
 .stat-label { font-size: clamp(0.72rem, 2.6vw, 1rem); line-height: 1.3; }
-.stat-net-row { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-top: 0.4rem; color: var(--gold); }
+.stat-net-row { display: inline-grid; place-items: center; width: 32px; height: 32px; flex: none; color: var(--gold); }
 .stat-net-row:hover { color: var(--cream); }
 .stat-net-row svg { width: 22px; height: 22px; fill: currentColor; }
 @media (min-width: 861px) {
-  .brand-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr); }
-  .brand-grid .kit-block { grid-column: 1 / -1; }
+  .brand-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
 }
 .actions.one-line { flex-wrap: nowrap; gap: 0.6rem; }
 @media (max-width: 1279px) {
@@ -591,3 +590,17 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .brand-logos { list-style: none; margin: 0.9rem 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.2rem; }
 .brand-logos img { height: 96px; width: auto; display: block; }
 @media (max-width: 860px) { .brand-logos { justify-content: flex-start; } .amb-logo img { height: 110px; } }
+
+.stat-line { display: flex; align-items: center; gap: 0.6rem; }
+.stat-line .stat-value { margin: 0; }
+.stat-net-row svg { width: 24px; height: 24px; }
+@media (max-width: 480px) { .stat-net-row { width: 22px; height: 22px; } .stat-net-row svg { width: 18px; height: 18px; } .stat-line { gap: 0.35rem; } }
+.amb-logo img { height: 80px; }
+.brand-logos img { height: 52px; }
+@media (max-width: 860px) { .amb-logo img { height: 72px; } .brand-logos img { height: 48px; } }
+.brands-block h3, .kit-block h3 { margin-top: 0; }
+.prod-li { grid-template-areas: "h d" "m a"; align-items: start; }
+.prod-li h3 { grid-area: h; } .prod-li .prod-desc { grid-area: d; } .prod-li .prod-meta { grid-area: m; margin: 0; }
+.prod-li .prod-act { grid-area: a; justify-self: center; margin: 0; }
+@media (max-width: 640px) { .prod-li { grid-template-areas: "h" "d" "m" "a"; } .prod-li .prod-act { margin-top: 0.6rem; } }
+.stats-grid { column-gap: 2.4rem; } @media (min-width: 861px) { .brand-grid .stat-line .stat-value { font-size: clamp(1.6rem, 3.1vw, 2.8rem); } }

@@ -154,13 +154,17 @@
       var value = document.createElement("p");
       value.className = "stat-value";
       value.textContent = s.value;
-      cell.appendChild(value);
       var tpl = nets && s.net ? $('[data-net="' + s.net + '"]', nets.content) : null;
       if (tpl) {
         var link = tpl.cloneNode(true);
         link.classList.add("stat-net-row");
-        cell.appendChild(link);
+        var line = document.createElement("div");
+        line.className = "stat-line";
+        line.appendChild(link);
+        line.appendChild(value);
+        cell.appendChild(line);
       } else {
+        cell.appendChild(value);
         var label = document.createElement("p");
         label.className = "stat-label";
         label.textContent = s["label_" + lang] || s.label_fr || "";
