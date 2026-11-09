@@ -567,3 +567,8 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .inst-act { text-align: center; }
 .inst-act:empty { display: none; }
 .inst-act .inst-link { margin-top: 1rem; display: inline-block; }
+
+.page-title.title-prod { font-size: clamp(2rem, 7.4vw, 6rem); }
+.prod-act { display: inline-block; vertical-align: middle; margin-left: 1rem; }
+.prod-act:empty { display: none; }
+.prod-act .inst-link { margin: 0; display: inline-block; padding: 0.55rem 1.2rem; }

@@ -102,7 +102,7 @@
   $$("[data-inst]").forEach(function (li) {
     var url = String((cfg.instLinks || {})[li.getAttribute("data-inst")] || "").trim();
     if (!/^https?:\/\//i.test(url)) { return; }
-    var holder = $(".inst-act", li) || li.lastElementChild;
+    var holder = $(".inst-act, .prod-act", li) || li.lastElementChild;
     var a = document.createElement("a");
     a.className = "btn inst-link";
     a.href = url;
