@@ -29,8 +29,17 @@ window.SITE_CONFIG = {
 
   /* Chiffres d'audience affichés sur la page Collaborations. Une ligne sans valeur n'apparaît pas. */
   stats: [
-    { value: "", label_fr: "Abonnés sur Instagram", label_en: "Instagram followers" },
-    { value: "", label_fr: "Abonnés sur TikTok", label_en: "TikTok followers" },
-    { value: "", label_fr: "Vues mensuelles", label_en: "Monthly views" }
-  ]
+    { value: "59,6 K", label_fr: "Abonnés sur Instagram", label_en: "Instagram followers" },
+    { value: "208 K", label_fr: "Abonnés sur TikTok", label_en: "TikTok followers" },
+    { value: "9 742", label_fr: "Abonnés sur X", label_en: "X followers" }
+  ],
+
+  /* Institutionnel : lien à ouvrir pour chaque série (vidéo YouTube, page LinkedIn ou Facebook de la structure, etc.).
+     Colle l'adresse complète entre les guillemets. Vide = aucun bouton. */
+  instLinks: {
+    "baisse-loyer": "",
+    "tier": "",
+    "horizon-halal": ""
+  }
+
 };

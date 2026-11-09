@@ -67,6 +67,35 @@
     }
   });
 
+
+  /* Institutionnel : lien optionnel par série (défini dans config.js) */
+  $$("[data-inst]").forEach(function (li) {
+    var url = String((cfg.instLinks || {})[li.getAttribute("data-inst")] || "").trim();
+    if (!/^https?:\/\//i.test(url)) { return; }
+    var holder = li.lastElementChild;
+    var a = document.createElement("a");
+    a.className = "btn inst-link";
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = lang === "en" ? "View" : "Voir";
+    holder.appendChild(a);
+  });
+
+  /* Ancre : se replace sur la section visée une fois la page mise en place */
+  if (location.hash.length > 1) {
+    var goAnchor = function () {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!t) { return; }
+      var root = document.documentElement;
+      var prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      t.scrollIntoView();
+      root.style.scrollBehavior = prev;
+    };
+    window.addEventListener("load", function () { goAnchor(); setTimeout(goAnchor, 350); });
+  }
+
   /* Chiffres d'audience */
   var stats = $("#stats");
   if (stats) {
