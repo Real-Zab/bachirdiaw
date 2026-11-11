@@ -55,7 +55,9 @@ p { margin: 0 0 1rem; }
   max-width: none;
   padding-inline: max(clamp(16px, 2.4vw, 24px), env(safe-area-inset-left, 0px)) max(clamp(16px, 2.4vw, 24px), env(safe-area-inset-right, 0px));
 }
-.home .site-header { position: absolute; left: 0; right: 0; background: transparent; border-bottom: 0; }
+.home .site-header { position: fixed; top: 0; left: 0; right: 0; background: transparent; border-bottom: 1px solid transparent; transition: background-color .25s, border-color .25s; }
+.home .site-header.is-solid { background: var(--ink); border-bottom-color: var(--line); }
+.home #showreel, .home #presse { scroll-margin-top: 5rem; }
 
 .brand { font-size: clamp(1.15rem, 2vw, 1.45rem); text-decoration: none; white-space: nowrap; }
 
@@ -627,3 +629,12 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 @media (max-width: 640px) { .amb-li { grid-template-columns: minmax(0, 1fr); } .amb-p { align-items: flex-end; } }
 .offers li.amb-li { grid-template-columns: 260px minmax(0, 1fr); }
 @media (max-width: 640px) { .offers li.amb-li { grid-template-columns: minmax(0, 1fr); } }
+
+/* Accueil : boutons Collaborations / Kit média alignés, Philanthropie */
+.brands-block, .kit-block { display: flex; flex-direction: column; }
+.brands-block .actions, .kit-block .actions { margin-top: auto; padding-top: 1.5rem; }
+.foot-title a { color: inherit; text-decoration: none; }
+.foot-phil { margin: 0; }
+.foot-phil a { text-decoration: none; color: var(--sand); }
+.foot-phil a:hover, .foot-title a:hover { color: var(--gold-2, var(--gold)); text-decoration: underline; }
+.phil-text { color: var(--sand); max-width: 62ch; font-size: 1.1rem; line-height: 1.7; margin-top: 1.5rem; }

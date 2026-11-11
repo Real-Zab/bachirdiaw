@@ -432,3 +432,12 @@
   sync();
   if (mq.addEventListener) mq.addEventListener("change", sync);
 })();
+
+/* Accueil : le menu devient plein dès qu'on quitte le haut de page */
+(function () {
+  var h = document.querySelector(".home .site-header");
+  if (!h) { return; }
+  var f = function () { h.classList.toggle("is-solid", (window.scrollY || document.documentElement.scrollTop) > 80); };
+  window.addEventListener("scroll", f, { passive: true });
+  f();
+})();
