@@ -331,6 +331,10 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 /* ---------- Titres en serif ---------- */
 .brand, .foot-brand, main h1, main h2, .c-title, .stat-value { font-family: var(--font-serif); font-variation-settings: normal; font-weight: 600; letter-spacing: 0; }
 .brand span, .foot-brand span { color: var(--gold); }
+/* Accueil : monogramme BD dans un cercle à la place du nom */
+.brand-mono { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 1.5px solid var(--gold); border-radius: 50%; font-size: 1.12rem; line-height: 1; transition: background-color .2s; }
+.brand-mono > span { color: var(--cream); }
+.brand-mono:hover { background: rgba(220, 182, 92, 0.16); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 
