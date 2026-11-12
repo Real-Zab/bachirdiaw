@@ -71,19 +71,27 @@ p { margin: 0 0 1rem; }
 .nav-cta { padding: 0.55rem clamp(0.7rem, 1.6vw, 1.4rem); border: 1px solid var(--gold); background: rgba(220, 182, 92, 0.1); color: var(--gold); font-size: clamp(0.66rem, 0.8vw + 0.2rem, 0.8rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
 .nav-cta:hover, .nav-cta[aria-current="page"] { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 
-.lang { display: flex; flex-direction: column; gap: 0.1rem; margin-left: clamp(0.8rem, 2vw, 2rem); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.25; }
-.lang a { color: var(--sand); text-decoration: none; }
-.lang a:hover { color: var(--cream); }
-.lang span[aria-current] { color: var(--gold); }
+/* Sélecteur de langue : pilule à deux segments, la langue active est pleine */
+.lang { display: inline-flex; flex: none; align-items: stretch; margin-left: clamp(0.8rem, 2vw, 2rem); border: 1px solid var(--gold); border-radius: 999px; overflow: hidden; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1; }
+.lang a, .lang span { display: flex; align-items: center; justify-content: center; min-width: 2.1rem; padding: 0.5rem 0.55rem 0.5rem 0.63rem; text-decoration: none; }
+.lang a { color: var(--sand); }
+.lang a:hover { color: var(--cream); background: rgba(220, 182, 92, 0.16); }
+.lang span[aria-current] { background: var(--gold); color: var(--ink); }
 
 /* Petit écran : le nom et le bouton Contact en haut, tous les liens juste dessous */
 @media (max-width: 680px) {
   .site-header .wrap { flex-wrap: wrap; min-height: 0; padding-block: 14px 8px; row-gap: 6px; }
   .brand { order: 1; }
-  .lang { order: 2; margin-left: auto; margin-right: 0.8rem; padding-right: 0.8rem; border-right: 1px solid var(--line); }
+  .lang { order: 2; margin-left: auto; margin-right: 0.7rem; }
   .head-cta { order: 3; margin-left: 0; }
   .head-cta::before { display: none; }
   .nav { order: 4; flex: 0 0 100%; margin-left: 0; justify-content: space-between; gap: 0.4rem; }
+}
+
+/* Très petit téléphone : pilule resserrée pour que le nom, la pilule et Contact restent sur une ligne */
+@media (max-width: 350px) {
+  .lang { margin-right: 0; }
+  .lang a, .lang span { min-width: 0; padding: 0.5rem 0.4rem 0.5rem 0.48rem; }
 }
 
 /* ---------- Accueil : hero plein écran, photo agrandie et fondue dans le noir ---------- */
@@ -248,6 +256,7 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.7rem 1.5rem; margin: 0 0 2rem; }
 .facts dt { font-family: var(--font-display); font-weight: 600; color: var(--gold); }
 .facts dd { margin: 0; }
+.fiche-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: -0.4rem 0 2rem; }
 .synopsis h2 { font-size: 1.6rem; margin-bottom: 0.6rem; }
 .todo { display: inline-block; padding: 0.05rem 0.7rem; border: 1px dashed var(--copper); color: var(--sand); font-style: italic; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -260,6 +269,8 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .inst-item { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: 1.75rem; align-items: start; padding-block: 1.75rem; border-bottom: 1px solid var(--line); }
 .inst-item h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin: 0 0 1rem; }
 @media (max-width: 640px) { .inst-item { grid-template-columns: minmax(0, 1fr); } }
+/* Titre sur deux lignes imposées : la taille se réduit sur les petits téléphones pour que la première ligne tienne */
+.inst-item h2.h-2l { text-wrap: wrap; font-size: min(clamp(1.7rem, 3.5vw, 2.4rem), calc((100vw - 40px) / 12.6)); }
 
 /* ---------- Médias ---------- */
 .mosaic { column-count: 3; column-gap: 1rem; margin-top: 1.5rem; }
@@ -455,7 +466,7 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
   .home .site-header .wrap { flex-wrap: nowrap; align-items: center; padding-block: 12px 2px; row-gap: 0; }
   .home .nav { order: 1; flex: 1 1 0; min-width: 0; justify-content: space-between; gap: 0.15rem; }
   .home .nav a { font-size: clamp(0.56rem, 2.85vw, 0.72rem); }
-  .home .lang { order: 2; position: static; margin: 0 0 0 0.55rem; padding: 0 0 0 0.55rem; border: 0; border-left: 1px solid var(--line); text-shadow: none; }
+  .home .lang { order: 2; position: static; margin: 0 0 0 0.55rem; text-shadow: none; }
 }
 
 /* ---------- Tablette en paysage et petits écrans d'ordinateur : les deux photos rétrécissent pour ne plus se toucher ---------- */
@@ -484,7 +495,9 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
   .home .site-header .wrap { flex-wrap: nowrap; align-items: center; padding-block: 12px 2px; }
   .home .nav { order: 1; flex: 1 1 auto; min-width: 0; margin: 0; justify-content: space-between; gap: 0.25rem; }
   .home .nav a { font-size: calc((100vw - 84px) / 29.5); }
-  .home .lang { position: static; order: 2; margin: 0 0 0 0.55rem; padding: 0 0 0 0.55rem; border: 0; border-left: 1px solid var(--line); text-shadow: none; font-size: 0.6rem; }
+  /* Accueil sur téléphone : la pilule s'empile (EN au-dessus de FR) pour laisser toute la largeur au menu */
+  .home .lang { position: static; order: 2; flex-direction: column; margin: 0 0 0 0.5rem; border-radius: 0.8rem; text-shadow: none; font-size: 0.6rem; }
+  .home .lang a, .home .lang span { min-width: 0; padding: 0.3rem 0.4rem 0.3rem 0.46rem; }
 }
 
 /* Fiche sans couverture : texte seul, pleine largeur */
@@ -648,3 +661,5 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 @media (max-width: 760px) { .refs-row { flex-wrap: wrap; } .refs-row .btn { flex: 1 1 100%; text-align: center; } }
 .foot-phil { min-height: 42px; display: flex; align-items: center; }
 @media (max-width: 1279px) { .foot-phil { justify-content: center; } }
+.home .band { border-bottom: 0; }
+.home .site-footer { margin-top: 0; }
