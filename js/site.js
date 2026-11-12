@@ -437,7 +437,11 @@
 (function () {
   var h = document.querySelector(".home .site-header");
   if (!h) { return; }
-  var f = function () { h.classList.toggle("is-solid", (window.scrollY || document.documentElement.scrollTop) > 80); };
+  var hero = document.querySelector(".hero");
+  var f = function () {
+    var limit = hero ? hero.getBoundingClientRect().bottom <= h.offsetHeight : (window.scrollY || 0) > 80;
+    h.classList.toggle("is-solid", limit);
+  };
   window.addEventListener("scroll", f, { passive: true });
   f();
 })();

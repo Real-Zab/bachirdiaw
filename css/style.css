@@ -638,3 +638,13 @@ main h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 1rem; }
 .foot-phil a { text-decoration: none; color: var(--sand); }
 .foot-phil a:hover, .foot-title a:hover { color: var(--gold-2, var(--gold)); text-decoration: underline; }
 .phil-text { color: var(--sand); max-width: 62ch; font-size: 1.1rem; line-height: 1.7; margin-top: 1.5rem; }
+
+.foot-title a { color: inherit; }
+.foot-phil a { font-size: 0.95rem; }
+@media (min-width: 1280px) { .foot-phil a { white-space: nowrap; } .foot-grid .social-icons { margin: 0; } }
+@media (max-width: 1279px) { .foot-grid > div { text-align: center; } }
+.prod-li .prod-act { justify-self: start; }
+.refs-row { flex-wrap: nowrap; gap: 0.8rem; }
+@media (max-width: 760px) { .refs-row { flex-wrap: wrap; } .refs-row .btn { flex: 1 1 100%; text-align: center; } }
+.foot-phil { min-height: 42px; display: flex; align-items: center; }
+@media (max-width: 1279px) { .foot-phil { justify-content: center; } }
